@@ -10,3 +10,18 @@ class TestEmailService(unittest.TestCase):
         self.assertEqual(result["from"], "noreply@example.com")
         self.assertEqual(result["to"], "user@example.com")
         self.assertEqual(result["status"], "sent")
+
+    def test_format_subject(self):
+        result = self.service.format_subject("Your invoice")
+        self.assertEqual(result, "[Notification] Your invoice")
+
+    def test_validate_recipient_valid(self):
+        self.assertTrue(self.service.validate_recipient("user@example.com"))
+
+    def test_validate_recipient_invalid(self):
+        self.assertFalse(self.service.validate_recipient("userexample.com"))
+        self.assertFalse(self.service.validate_recipient("user@com"))
+
+    def test_count_words(self):
+        self.assertEqual(self.service.count_words("Hello there!"), 2)
+        self.assertEqual(self.service.count_words("  This is a test email. "), 5)
