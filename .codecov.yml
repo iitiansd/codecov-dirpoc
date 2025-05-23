@@ -1,0 +1,72 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 85%
+        threshold: 1%
+    patch:
+      default:
+        target: 95%
+        threshold: 0%
+        if_not_found: failure
+    components:
+      services_email:
+        target: 100%
+        threshold: 0%
+        if_not_found: failure
+
+  ignore:
+  - "services/dummy_service_ignore_me/**"
+
+component_management:
+  individual_components:
+    - component_id: scripts_v2
+      name: Scripts v2
+      paths:
+        - scripts_v2/**
+
+    - component_id: python_v2
+      name: Python v2 Libraries
+      paths:
+        - python_v2/**
+
+    - component_id: schedulers_test_scheduler
+      name: Test Scheduler
+      paths:
+        - schedulers/test_scheduler/**
+
+    - component_id: schedulers_dag_scheduler
+      name: DAG Scheduler
+      paths:
+        - schedulers/dag_scheduler/**
+
+    - component_id: services_dag
+      name: DAG Service
+      paths:
+        - services/dag/**
+
+    - component_id: services_exportapi
+      name: Export API Service
+      paths:
+        - services/exportapi/**
+
+    - component_id: java_logging_client
+      name: Java Logging Client
+      paths:
+        - java-libs-v2/api-logging-client/**
+
+    - component_id: conversational_email
+      name: Conversational Email
+      paths:
+        - services/conversational-email/**
+
+    - component_id: services_email
+      name: Email Service
+      paths:
+        - "services/email_service/**/*.py"
+        - "!services/email_service/tests/**"
+
+    - component_id: schedulers_email
+      name: Email Scheduler
+      paths:
+        - schedulers/email_scheduler/**
