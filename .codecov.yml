@@ -66,3 +66,8 @@ component_management:
       name: Email Scheduler
       paths:
         - schedulers/email_scheduler/**
+        
+    - component_id: java_email_utils
+      name: Java Email Utils
+      paths:
+        - java-libs-v2/email-utils/**
