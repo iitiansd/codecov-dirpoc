@@ -34,3 +34,12 @@ class TestReportGenerator(unittest.TestCase):
         data = []
         expected_detailed = []
         self.assertEqual(self.generator.generate_detailed_report(data), expected_detailed)
+
+
+    def test_get_report_metadata(self):
+        expected = {
+            "service": "TestService",
+            "author": "Analytics Team",
+            "version": "1.0"
+        }
+        self.assertEqual(self.generator.get_report_metadata(), expected)
