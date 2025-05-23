@@ -15,6 +15,9 @@ coverage:
         threshold: 0%
         if_not_found: failure
 
+  ignore:
+  - "services/dummy_service_ignore_me/**"
+
 component_management:
   individual_components:
     - component_id: scripts_v2
@@ -60,7 +63,8 @@ component_management:
     - component_id: services_email
       name: Email Service
       paths:
-        - services/email_service/**
+        - "services/email_service/**/*.py"
+        - "!services/email_service/tests/**"
 
     - component_id: schedulers_email
       name: Email Scheduler

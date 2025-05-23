@@ -25,3 +25,7 @@ class TestEmailService(unittest.TestCase):
     def test_count_words(self):
         self.assertEqual(self.service.count_words("Hello there!"), 2)
         self.assertEqual(self.service.count_words("  This is a test email. "), 5)
+
+    def test_send(self):
+        result = self.service.send("user@example.com", "Welcome")
+        assert "Email sent" in result
