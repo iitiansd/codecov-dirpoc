@@ -1,0 +1,12 @@
+# Core dependencies
+# This project primarily uses Python standard library modules
+
+# Development and testing dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+black>=22.0.0
+flake8>=5.0.0
+mypy>=1.0.0
+
+# Optional: For enhanced development experience
+pre-commit>=2.20.0
