@@ -1,0 +1,7 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 90%
+        threshold: 1%   # Allowable drop
+        if_not_found: failure
