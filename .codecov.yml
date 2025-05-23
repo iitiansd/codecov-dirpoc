@@ -16,7 +16,7 @@ coverage:
         if_not_found: failure
 
   ignore:
-  - "services/dummy_service_ignore_me/**"
+    - "services/dummy_service_ignore_me/**/*"
 
 component_management:
   individual_components:
