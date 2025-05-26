@@ -22,3 +22,6 @@ class EmailService:
     def count_words(self, message: str) -> int:
         """Count the number of words in the email body."""
         return len(message.strip().split())
+
+    def send(self, to, subject):
+        return f"Email sent to {to} with subject: {subject}"
