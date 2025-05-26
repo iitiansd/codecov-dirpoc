@@ -61,5 +61,11 @@ component_management:
       name: Email Service
       paths:
         - services/email_service/**
+
+    - component_id: schedulers_email
+      name: Email Scheduler
+      paths:
+        - schedulers/email_scheduler/**
+
 ignore:
-  - "services/email_service/**"
+  - "services/dummy_service_ignore_me/**"

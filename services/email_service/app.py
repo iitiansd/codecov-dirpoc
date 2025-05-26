@@ -22,12 +22,3 @@ class EmailService:
     def count_words(self, message: str) -> int:
         """Count the number of words in the email body."""
         return len(message.strip().split())
-
-    def log_email(self, recipient: str, subject: str, status: str) -> None:
-        """Log email details."""
-        print(f"Email sent to {recipient} with subject '{subject}' - Status: {status}")
-
-    def format_body(self, body: str, signature: str = "Best regards,\nEmailService") -> str:
-        """Format the email body with a signature."""
-        return f"{body}\n\n{signature}"
-       
