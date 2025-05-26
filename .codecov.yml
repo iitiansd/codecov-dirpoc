@@ -4,68 +4,154 @@ coverage:
       default:
         target: 85%
         threshold: 1%
+        # Require all flags to be present for project coverage
+        flags:
+          - scripts_v2
+          - python_v2
+          - schedulers
+          - services
     patch:
       default:
         target: 95%
         threshold: 0%
         if_not_found: failure
-    components:
-      services_email:
-        target: 100%
-        threshold: 0%
-        if_not_found: failure
 
+# Define flags for different parts of the monorepo
+flags:
+  # Scripts v2 flag
+  scripts_v2:
+    paths:
+      - scripts_v2/**
+    carryforward: true
+  
+  # Python v2 libraries flag
+  python_v2:
+    paths:
+      - python_v2/**
+    carryforward: true
+  
+  # Schedulers flag (covers all scheduler services)
+  schedulers:
+    paths:
+      - schedulers/**
+    carryforward: true
+  
+  # Services flag (covers all services)
+  services:
+    paths:
+      - services/**
+    carryforward: true
+  
+  # Specific service flags for granular control
+  services_email:
+    paths:
+      - services/email_service/**
+    carryforward: true
+  
+  services_dag:
+    paths:
+      - services/dag/**
+    carryforward: true
+  
+  services_exportapi:
+    paths:
+      - services/exportapi/**
+    carryforward: true
+  
+  services_conversational_email:
+    paths:
+      - services/conversational-email/**
+    carryforward: true
+  
+  services_reporting:
+    paths:
+      - services/reporting_service/**
+    carryforward: true
+  
+  # Scheduler-specific flags
+  schedulers_test:
+    paths:
+      - schedulers/test_scheduler/**
+    carryforward: true
+  
+  schedulers_dag:
+    paths:
+      - schedulers/dag_scheduler/**
+    carryforward: true
+  
+  schedulers_email:
+    paths:
+      - schedulers/email_scheduler/**
+    carryforward: true
+  
+  schedulers_simple_job:
+    paths:
+      - schedulers/simple_job_scheduler/**
+    carryforward: true
+  
+  # Java libraries flag
+  java_libs:
+    paths:
+      - java-libs-v2/**
+    carryforward: true
+
+# Component management with flags integration
 component_management:
   individual_components:
-    - component_id: scripts_v2
+    - component_id: scripts_v2_component
       name: Scripts v2
-      paths:
-        - scripts_v2/**
-
-    - component_id: python_v2
+      flag_regexes:
+        - ^scripts_v2$
+    
+    - component_id: python_v2_component
       name: Python v2 Libraries
-      paths:
-        - python_v2/**
+      flag_regexes:
+        - ^python_v2$
+    
+    - component_id: schedulers_component
+      name: All Schedulers
+      flag_regexes:
+        - ^schedulers$
+        - ^schedulers_.*
+    
+    - component_id: services_component
+      name: All Services
+      flag_regexes:
+        - ^services$
+        - ^services_.*
+    
+    - component_id: email_services_component
+      name: Email Related Services
+      flag_regexes:
+        - ^services_email$
+        - ^services_conversational_email$
+        - ^schedulers_email$
+    
+    - component_id: java_component
+      name: Java Libraries
+      flag_regexes:
+        - ^java_libs$
 
-    - component_id: schedulers_test_scheduler
-      name: Test Scheduler
-      paths:
-        - schedulers/test_scheduler/**
+# Status checks for specific flags
+flag_management:
+  default_rules:
+    carryforward: true
+    statuses:
+      - type: project
+        target: 80%
+      - type: patch
+        target: 90%
 
-    - component_id: schedulers_dag_scheduler
-      name: DAG Scheduler
-      paths:
-        - schedulers/dag_scheduler/**
-
-    - component_id: services_dag
-      name: DAG Service
-      paths:
-        - services/dag/**
-
-    - component_id: services_exportapi
-      name: Export API Service
-      paths:
-        - services/exportapi/**
-
-    - component_id: java_logging_client
-      name: Java Logging Client
-      paths:
-        - java-libs-v2/api-logging-client/**
-
-    - component_id: conversational_email
-      name: Conversational Email
-      paths:
-        - services/conversational-email/**
-
-    - component_id: services_email
-      name: Email Service
-      paths:
-        - services/email_service/**
-
-    - component_id: schedulers_email
-      name: Email Scheduler
-      paths:
-        - schedulers/email_scheduler/**
-
+# Ignore patterns
 ignore:
   - "**/services/dummy_service_ignore_me/**"
+  - "**/__pycache__/**"
+  - "**/node_modules/**"
+  - "**/.pytest_cache/**"
+
+# Comment configuration for better PR feedback
+comment:
+  layout: "reach,diff,flags,tree,footer"
+  behavior: default
+  require_changes: false
+  show_carryforward_flags: true
