@@ -68,4 +68,4 @@ component_management:
         - schedulers/email_scheduler/**
 
 ignore:
-  - "services/dummy_service_ignore_me/**"
+  - "**/services/dummy_service_ignore_me/**"
