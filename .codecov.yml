@@ -10,6 +10,7 @@ coverage:
           - python_v2
           - schedulers
           - services
+          - java_libs # Added in your version, no change needed
     patch:
       default:
         target: 95%
@@ -47,92 +48,74 @@ flags:
     paths:
       - services/email_service/**
     carryforward: true
-  
   services_dag:
     paths:
       - services/dag/**
     carryforward: true
-  
   services_exportapi:
     paths:
       - services/exportapi/**
     carryforward: true
-  
   services_conversational_email:
     paths:
       - services/conversational-email/**
     carryforward: true
-  
   services_reporting:
     paths:
       - services/reporting_service/**
     carryforward: true
-  
-  # Scheduler-specific flags
   schedulers_test:
     paths:
       - schedulers/test_scheduler/**
     carryforward: true
-  
   schedulers_dag:
     paths:
       - schedulers/dag_scheduler/**
     carryforward: true
-  
   schedulers_email:
     paths:
       - schedulers/email_scheduler/**
     carryforward: true
-  
   schedulers_simple_job:
     paths:
       - schedulers/simple_job_scheduler/**
     carryforward: true
-  
-  # Java libraries flag
   java_libs:
     paths:
       - java-libs-v2/**
     carryforward: true
 
-# Component management with flags integration
 component_management:
   individual_components:
     - component_id: scripts_v2_component
       name: Scripts v2
       flag_regexes:
         - ^scripts_v2$
-    
     - component_id: python_v2_component
       name: Python v2 Libraries
       flag_regexes:
         - ^python_v2$
-    
     - component_id: schedulers_component
       name: All Schedulers
       flag_regexes:
         - ^schedulers$
         - ^schedulers_.*
-    
     - component_id: services_component
       name: All Services
       flag_regexes:
         - ^services$
         - ^services_.*
-    
     - component_id: email_services_component
       name: Email Related Services
       flag_regexes:
         - ^services_email$
         - ^services_conversational_email$
         - ^schedulers_email$
-    
     - component_id: java_component
       name: Java Libraries
       flag_regexes:
         - ^java_libs$
 
-# Status checks for specific flags
 flag_management:
   default_rules:
     carryforward: true
@@ -142,12 +125,12 @@ flag_management:
       - type: patch
         target: 90%
 
-# Ignore patterns
 ignore:
   - "**/services/dummy_service_ignore_me/**"
   - "**/__pycache__/**"
   - "**/node_modules/**"
   - "**/.pytest_cache/**"
+  - "**/java-libs-v2/*/target/**" # Ignore Maven build artifacts
 
 # Comment configuration for better PR feedback
 comment:
