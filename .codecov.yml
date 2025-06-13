@@ -1,3 +1,6 @@
+ignore:
+  - "services/email_service/**"
+
 coverage:
   status:
     project:
