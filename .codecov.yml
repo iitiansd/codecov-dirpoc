@@ -1,6 +1,6 @@
 ignore:
-  - "services/email_service/**"
   - "schedulers/simple_job_scheduler/**"
+  - "services/reporting_service/**"
 
 coverage:
   status:

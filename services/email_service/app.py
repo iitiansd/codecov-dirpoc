@@ -14,6 +14,12 @@ class EmailService:
     def format_subject(self, subject: str) -> str:
         """Prefix subject with tag."""
         return f"[Notification] {subject}"
+
     def validate_recipient(self, recipient: str) -> bool:
         """Very basic email validation."""
         return "@" in recipient and "." in recipient.split("@")[-1]
+
+    def count_words(self, message: str) -> int:
+        """Count the number of words in the email body."""
+        return len(message.strip().split())
+        return len(message.strip().split())

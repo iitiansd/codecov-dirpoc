@@ -42,6 +42,12 @@ class ReportGenerator:
             "version": "1.0"
         }
 
+    def get_report_name() -> dict:
+        """Returns metadata about the report name."""
+        return {
+            "service": self.service_name
+        } 
+
 # Example usage (usually this would be run by a web server or a task runner)
 if __name__ == "__main__":
     generator = ReportGenerator("SalesReporting")
