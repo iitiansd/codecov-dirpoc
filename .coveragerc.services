@@ -1,0 +1,7 @@
+[run]
+# measure everything in your repo
+source = .
+
+# but drop any file under services/reporting_service/**
+omit =
+    services/reporting_service/**

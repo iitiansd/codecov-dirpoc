@@ -1,40 +1,53 @@
 name: Run tests and upload coverage
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  push:      { branches: [ main ] }
+  pull_request: { branches: [ main ] }
 
 jobs:
-  test:
+  coverage:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
+      - name: Install deps
         run: |
-          python -m pip install --upgrade pip
+          pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest pytest-cov codecov
+          pip install pytest pytest-cov coverage codecov
 
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
-      - name: Run tests with coverage
+      # ────────────────────────────────────────────────────────────────
+      - name: Coverage for “services” (excludes reporting_service)
         run: |
-          pytest -v --cov=. --cov-config=.coveragerc --cov-report=xml
+          coverage run --rcfile=.coveragerc.services -m pytest
+          coverage xml -o coverage-services.xml
 
-      - name: Upload coverage to Codecov
+      - name: Upload “services” coverage
         uses: codecov/codecov-action@v3
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}  # Only needed for private repos
-          files: ./coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage-services.xml
+          flags: services
+          fail_ci_if_error: true
+
+      # ────────────────────────────────────────────────────────────────
+      - name: Coverage for reporting_service only
+        run: |
+          coverage run --rcfile=.coveragerc.reporting_service -m pytest
+          coverage xml -o coverage-reporting.xml
+
+      - name: Upload “reporting_service” coverage
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage-reporting.xml
+          flags: reporting_service
           fail_ci_if_error: true
