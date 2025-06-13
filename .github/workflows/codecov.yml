@@ -35,6 +35,9 @@ jobs:
         with:
           files: coverage-services.xml
           flags: services
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage-services.xml
+          flags: services
           fail_ci_if_error: true
 
       # ────────────────────────────────────────────────────────────────
@@ -46,6 +49,9 @@ jobs:
       - name: Upload “reporting_service” coverage
         uses: codecov/codecov-action@v3
         with:
+          files: coverage-reporting.xml
+          flags: reporting_service
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage-reporting.xml
           flags: reporting_service
           fail_ci_if_error: true
