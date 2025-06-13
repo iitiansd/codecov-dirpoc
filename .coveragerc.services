@@ -1,7 +1,7 @@
 [run]
-# measure everything under Services/
-source = Services
+# measure everything in your repo
+source = .
 
-# but drop any file under Services/reporting_service/
+# but drop any file under Services/reporting_service/**
 omit =
     Services/reporting_service/**
