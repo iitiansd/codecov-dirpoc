@@ -60,6 +60,7 @@ component_management:
       name: Email Service
       paths:
         - services/email_service/**
+        - "!services/email_service/app.py"
 
     - component_id: schedulers_email
       name: Email Scheduler
