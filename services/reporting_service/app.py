@@ -34,6 +34,20 @@ class ReportGenerator:
             detailed_report.append(item_copy)
         return detailed_report
 
+    def get_report_metadata(self) -> dict:
+        """Returns metadata about the report service."""
+        return {
+            "service": self.service_name,
+            "author": "Analytics Team",
+            "version": "1.0"
+        }
+
+    def get_report_name() -> dict:
+        """Returns metadata about the report name."""
+        return {
+            "service": self.service_name
+        } 
+
 # Example usage (usually this would be run by a web server or a task runner)
 if __name__ == "__main__":
     generator = ReportGenerator("SalesReporting")

@@ -30,6 +30,11 @@ class SimpleScheduler:
             if not job.executed and job.scheduled_time <= now:
                 job.execute()
 
+
+    def delete_job(self, job: Job):
+        """Adds a job to the scheduler."""
+        print(f"Job {job.job_id} added, scheduled for {job.scheduled_time}")
+        
 # Example usage
 if __name__ == "__main__":
     scheduler = SimpleScheduler()
