@@ -2,6 +2,6 @@
 # measure everything in your repo
 source = .
 
-# but drop any file under Services/reporting_service/**
+# but drop any file under services/reporting_service/**
 omit =
-    Services/reporting_service/**
+    services/reporting_service/**

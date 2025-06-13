@@ -1,3 +1,3 @@
 [run]
 # only measure that one folder
-source = Services/reporting_service
+source = services/reporting_service
