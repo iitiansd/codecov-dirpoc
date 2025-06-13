@@ -1,0 +1,7 @@
+[run]
+# measure everything under Services/
+source = Services
+
+# but drop any file under Services/reporting_service/
+omit =
+    Services/reporting_service/**

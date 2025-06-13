@@ -1,0 +1,5 @@
+[run]
+# measure *only* reporting_service
+source = Services/reporting_service
+
+# no omit – we want ALL its files counted

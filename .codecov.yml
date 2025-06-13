@@ -11,3 +11,12 @@ coverage:
         threshold: 0%    # allow no drop
         if_not_found: failure
         informational: false
+        
+flag_management:
+  individual_flags:
+    - name: services
+      paths:
+        - Services/**
+    - name: reporting_service
+      paths:
+        - Services/reporting_service/**
