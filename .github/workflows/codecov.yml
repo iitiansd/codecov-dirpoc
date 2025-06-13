@@ -33,8 +33,6 @@ jobs:
       - name: Upload “services” coverage
         uses: codecov/codecov-action@v3
         with:
-          files: coverage-services.xml
-          flags: services
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage-services.xml
           flags: services
@@ -49,8 +47,6 @@ jobs:
       - name: Upload “reporting_service” coverage
         uses: codecov/codecov-action@v3
         with:
-          files: coverage-reporting.xml
-          flags: reporting_service
           token: ${{ secrets.CODECOV_TOKEN }}
           files: coverage-reporting.xml
           flags: reporting_service
