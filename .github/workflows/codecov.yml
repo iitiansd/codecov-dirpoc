@@ -35,7 +35,7 @@ jobs:
         run: |
           pytest \
             schedulers/xyz/tests/test_utils.py \
-            --cov=schedulers/xyz/utils.py \
+            --cov=schedulers.xyz.utils \
             --cov-report=xml:coverage-reports/coverage.xml
 
       - name: Upload coverage to Codecov
