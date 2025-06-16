@@ -28,7 +28,7 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
-      - name: name: Run only utils tests with coverage
+       - name: Run only utils tests with coverage
         run: |
           pytest \
             schedulers/xyz/tests/test_utils.py \
