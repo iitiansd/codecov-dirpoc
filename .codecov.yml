@@ -1,0 +1,13 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 90%
+        threshold: 1%
+        if_not_found: failure
+    patch:
+      default:
+        target: 95%     # e.g. 95% of changed lines must be covered
+        threshold: 0%    # allow no drop
+        if_not_found: failure
+        informational: false
