@@ -34,12 +34,13 @@ jobs:
       - name: Run only utils tests with coverage
         run: |
           pytest \
-            Schedulers/xyz/tests/test_utils.py \
-            --cov=Schedulers/xyz/utils.py \
-            --cov-report=xml
+            schedulers/xyz/tests/test_utils.py \
+            --cov=schedulers/xyz/utils.py \
+            --cov-report=xml:coverage-reports/coverage.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: coverage-reports/coverage.xml
           fail_ci_if_error: true
