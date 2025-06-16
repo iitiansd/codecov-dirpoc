@@ -28,12 +28,15 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
 
+      - name: Ensure coverage‐reports dir
+        run: mkdir -p coverage-reports
+
       - name: Run only utils tests with coverage
         run: |
           pytest \
             schedulers/xyz/tests/test_utils.py \
             --cov=schedulers/xyz/utils.py \
-            --cov-report=xml
+            --cov-report=xml:coverage-reports/coverage.xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
