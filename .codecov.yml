@@ -11,3 +11,4 @@ coverage:
         threshold: 0%    # allow no drop
         if_not_found: failure
         informational: false
+comment: false
