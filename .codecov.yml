@@ -1,0 +1,37 @@
+# .codecov.yml
+coverage:
+  status:
+    project:
+      default:
+        target: 85%
+        threshold: 1%
+    patch:
+      default:
+        target: 95%
+        threshold: 0%
+        if_not_found: failure
+
+component_management:
+  # these default rules apply to every component
+  default_rules:
+    statuses:
+      - type: project
+        target: 85%
+        threshold: 1%
+      - type: patch
+        target: 95%
+        threshold: 0%
+        if_not_found: failure
+
+  individual_components:
+    # … your other components …
+    - component_id: services_email
+      name: Email Service
+      paths:
+        - "services/email_service/**"
+      # override the default patch rule for this component
+      statuses:
+        - type: patch
+          target: 100%       # require 100% patch coverage on Email Service
+          threshold: 0%
+          if_not_found: failure
