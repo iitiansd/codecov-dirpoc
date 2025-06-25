@@ -22,3 +22,10 @@ class EmailService:
     def count_words(self, message: str) -> int:
         """Count the number of words in the email body."""
         return len(message.strip().split())
+
+    def extract_recipient_domain(self, recipient: str) -> str:
+        """Return the domain part of an email address, e.g. 'example.com'."""
+        if not self.validate_recipient(recipient):
+            raise ValueError(f"Invalid recipient: {recipient!r}")
+        # split only on the first "@"
+        return recipient.split("@", 1)[1]
